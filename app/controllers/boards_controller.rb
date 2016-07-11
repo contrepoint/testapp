@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.find(params[:id]).state.split('')
+    @board = Board.find(params[:id])
     # byebug
   end
 
@@ -48,8 +48,8 @@ class BoardsController < ApplicationController
     @board.save
     # @board_state = @board.state.split('')
     MarkBoardJob.perform_now(@board)
-    byebug
-    # redirect_to @board
+    # byebug
+    redirect_to @board
   end
 
   # DELETE /boards/1

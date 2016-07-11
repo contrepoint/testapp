@@ -7,6 +7,6 @@ App.board = App.cable.subscriptions.create "BoardChannel",
 
   received: (data) ->
     console.log("test")
-
+    alert("derp")
   mark: ->
     @perform 'mark'
