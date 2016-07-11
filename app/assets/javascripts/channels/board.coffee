@@ -6,7 +6,9 @@ App.board = App.cable.subscriptions.create "BoardChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    console.log("test")
-    alert("derp")
+    console.log(data)
+    # alert("derp")
+    # debugger
+    $(".board").replaceWith(data.template)
   mark: ->
     @perform 'mark'
