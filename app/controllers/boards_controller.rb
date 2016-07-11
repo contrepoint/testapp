@@ -42,10 +42,14 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
+    # ActionCable.server.broadcast
     position = params[:position].to_i
     @board.state[position] = "x"
     @board.save
-    redirect_to @board
+    # @board_state = @board.state.split('')
+    MarkBoardJob.perform_now(@board)
+    byebug
+    # redirect_to @board
   end
 
   # DELETE /boards/1
